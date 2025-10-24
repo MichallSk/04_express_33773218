@@ -6,20 +6,26 @@ const router = express.Router();
 
 router.get("/", (req, res) => res.send("Hello World!")); 
 
+// About page
 router.get("/about", (req, res) => res.send ("<h1>This is the about page</h1>"));
 
+// Contact Me page
 router.get("/contact", (req, res) => res.send ("<h1>Contact Me!</h1>"));
 
+
+// Date page
 router.get("/date", (req, res) => {
   const date = new Date();
   res.send(`<h1>Today's date:</h1><p>${date}</p>`);
 });
 
+// Welcome page with parameter
 router.get("/welcome/:name", (req, res) => {
   const userName = req.params.name; // Get the name from the URL
   res.send(`<h1>Welcome, ${userName}!</h1><p>Glad to have you here.</p>`);
 });
 
+// Chain of handlers example
 router.get("/chain",
   (req, res, next) => {
     req.message = "Hello from the first handler!"; // pass data to the next one
@@ -30,6 +36,7 @@ router.get("/chain",
   }
 );
 
+// Serve a static HTML file
 const path = require("path"); // built-in Node module for file paths
 
 router.get("/file", (req, res) => {
